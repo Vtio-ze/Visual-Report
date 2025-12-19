@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>同花顺(300033.SZ) 2023年度财务深度分析报告</title>
+    <!-- 引入 Tailwind CSS 进行快速样式布局 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 ECharts 图表库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans SC', sans-serif; background-color: #f3f4f6; }
+        .chart-container { height: 400px; width: 100%; background: white; border-radius: 0.5rem; padding: 1rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }
+        .section-card { background: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); margin-bottom: 2rem; }
+        .highlight-num { color: #dc2626; font-weight: 700; }
+        .safe-num { color: #16a34a; font-weight: 700; }
+        h2 { border-left: 5px solid #ef4444; padding-left: 1rem; font-size: 1.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.1rem; font-weight: 600; color: #4b5563; margin-top: 1rem; margin-bottom: 0.5rem; }
+        p { color: #4b5563; line-height: 1.7; margin-bottom: 1rem; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 顶部导航 -->
+    <div class="bg-slate-900 text-white p-6 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold tracking-wider">同花顺 (300033.SZ)</h1>
+                <p class="text-xs text-slate-400 mt-1">2023年度财务深度分析报告 | 可视化版</p>
+            </div>
+            <div class="hidden md:block text-sm text-slate-300">
+                <span class="mr-4">财务健康度: <span class="text-green-400">极高</span></span>
+                <span>战略激进程度: <span class="text-red-400">高</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-28 pb-12 px-4 max-w-7xl mx-auto">
+
+        <!-- 摘要仪表盘 -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow border-t-4 border-red-500">
+                <h4 class="text-gray-500 text-sm font-medium">营业总收入</h4>
+                <p class="text-3xl font-bold text-gray-800 mt-2">35.64 <span class="text-sm font-normal text-gray-500">亿元</span></p>
+                <p class="text-xs text-green-600 mt-2">▲ 0.14% 同比微增</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow border-t-4 border-yellow-500">
+                <h4 class="text-gray-500 text-sm font-medium">归母净利润</h4>
+                <p class="text-3xl font-bold text-gray-800 mt-2">14.02 <span class="text-sm font-normal text-gray-500">亿元</span></p>
+                <p class="text-xs text-red-500 mt-2">▼ 17.07% 战略性承压</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow border-t-4 border-blue-500">
+                <h4 class="text-gray-500 text-sm font-medium">货币资金储备</h4>
+                <p class="text-3xl font-bold text-gray-800 mt-2">81.70 <span class="text-sm font-normal text-gray-500">亿元</span></p>
+                <p class="text-xs text-blue-600 mt-2">占总资产 83%</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow border-t-4 border-purple-500">
+                <h4 class="text-gray-500 text-sm font-medium">研发费用率</h4>
+                <p class="text-3xl font-bold text-gray-800 mt-2">33.09%</p>
+                <p class="text-xs text-purple-600 mt-2">All in AI 战略体现</p>
+            </div>
+        </div>
+
+        <!-- 1. 核心经营数据 -->
+        <div class="section-card">
+            <h2>一、核心经营数据概览</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <p>2023年，同花顺在市场日均成交额下滑的背景下，展现出极强的经营韧性。虽然净利润因加大AI投入而短期下滑，但核心业务结构优化显著。</p>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-600 text-sm">
+                        <li><strong>研发投入逆势增长：</strong>投入11.79亿元，同比增长10.51%，构筑长期技术壁垒。</li>
+                        <li><strong>B端业务爆发：</strong>软件销售及维护收入激增53.53%，成功对冲C端周期波动。</li>
+                        <li><strong>现金流充沛：</strong>经营性现金流净额15.92亿元，净现比1.14，盈利质量极高。</li>
+                    </ul>
+                </div>
+                <div id="chart-core-data" class="chart-container"></div>
+            </div>
+        </div>
+
+        <!-- 2. 偿债能力 -->
+        <div class="section-card">
+            <h2>二、偿债能力分析</h2>
+            <p>同花顺凭借“高现金、无借款、优结构”的特点，财务风险几乎为零。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3>短期偿债能力</h3>
+                    <div id="chart-short-debt" class="chart-container" style="height: 300px;"></div>
+                    <p class="text-sm mt-2">流动比率3.42远超行业标准，货币资金覆盖流动负债3.38倍。</p>
+                </div>
+                <div>
+                    <h3>长期偿债能力</h3>
+                    <div id="chart-long-debt" class="chart-container" style="height: 300px;"></div>
+                    <p class="text-sm mt-2">资产负债率仅25.65%，且近半数为合同负债（预收款），无实质性债务压力。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 盈利能力 -->
+        <div class="section-card">
+            <h2>三、盈利能力与杜邦分析</h2>
+            <div class="mb-6">
+                <div id="chart-profitability" class="chart-container"></div>
+            </div>
+            
+            <div class="mt-8 bg-gray-50 p-4 rounded-lg">
+                <h3 class="text-center mb-4">ROE 深度拆解 (杜邦分析)</h3>
+                <div id="chart-dupont" class="chart-container"></div>
+                <p class="text-sm text-center mt-2 text-gray-500">ROE下滑主要受净利率拖累（研发及销售费用激增），但杠杆效率有所提升。</p>
+            </div>
+        </div>
+
+        <!-- 4. 营运与成本 -->
+        <div class="section-card">
+            <h2>四、营运效率与成本结构</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3>成本费用构成 (2023)</h3>
+                    <div id="chart-cost-structure" class="chart-container"></div>
+                    <p class="text-sm mt-2"><strong>研发费用</strong>是最大支出项，占比达33.1%，确立了技术驱动型的成本结构。财务费用为负（利息收入），贡献了净利润。</p>
+                </div>
+                <div>
+                    <h3>营运效率指标</h3>
+                    <div id="chart-operation" class="chart-container"></div>
+                    <p class="text-sm mt-2">应收账款周转率虽因B端客户增加而有所下降，但仍处行业顶尖水平（回款周期仅5.5天）。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. 收入结构 -->
+        <div class="section-card">
+            <h2>五、收入结构分析</h2>
+            <p>业务结构正在经历深刻的良性调整：从过度依赖C端流量变现，向B+C双轮驱动转型。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3>分产品收入占比</h3>
+                    <div id="chart-revenue-product" class="chart-container"></div>
+                </div>
+                <div>
+                    <h3>分地区收入占比</h3>
+                    <div id="chart-revenue-region" class="chart-container"></div>
+                </div>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-4 text-center">
+                <div class="p-3 bg-red-50 rounded">
+                    <span class="block text-xl font-bold text-red-600">+53.53%</span>
+                    <span class="text-xs text-gray-500">软件销售收入增速 (B端崛起)</span>
+                </div>
+                <div class="p-3 bg-blue-50 rounded">
+                    <span class="block text-xl font-bold text-blue-600">89.09%</span>
+                    <span class="text-xs text-gray-500">综合毛利率 (护城河稳固)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. 对标分析 -->
+        <div class="section-card">
+            <h2>六、行业与竞品对标</h2>
+            
+            <div class="mb-8">
+                <h3>行业基准对比</h3>
+                <div id="chart-industry-benchmark" class="chart-container"></div>
+            </div>
+
+            <div class="border-t pt-6">
+                <h3>同业深度PK：同花顺 vs 东方财富</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
+                    <div class="col-span-2">
+                        <div id="chart-peer-comparison" class="chart-container"></div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-4 rounded border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-700">同花顺 (FinTech)</h4>
+                            <p class="text-sm text-gray-600 mt-1">轻资产、无牌照、技术驱动。毛利率高(89%)，研发投入极高(33%)，估值享受科技股溢价。</p>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded border-l-4 border-orange-500">
+                            <h4 class="font-bold text-orange-700">东方财富 (券商)</h4>
+                            <p class="text-sm text-gray-600 mt-1">重资本、全牌照、流量变现。营收规模大(3倍于同花顺)，但受资本金约束，毛利率相对较低。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. 风险与展望 -->
+        <div class="section-card">
+            <h2>七、风险评估与未来展望</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3>风险矩阵评估</h3>
+                    <p class="text-sm mb-4">通过“影响程度”与“发生概率”双维度评估，主要风险集中在市场低迷与AI变现不确定性。</p>
+                    <div id="chart-risk-matrix" class="chart-container"></div>
+                </div>
+                <div>
+                    <h3>核心结论与建议</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg h-full">
+                        <ul class="space-y-4 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-3 text-xs font-bold">1</span>
+                                <span><strong>财务极度健康：</strong>81.7亿现金趴在账上，无有息负债。建议提升资金使用效率，进行回购或并购。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mr-3 text-xs font-bold">2</span>
+                                <span><strong>业绩短期承压：</strong>净利润下滑是主动战略选择。只要软件销售增速维持40%+，长期逻辑依然通顺。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center mr-3 text-xs font-bold">3</span>
+                                <span><strong>战略极度激进：</strong>All in AI。未来重点关注HithinkGPT在B端投研和C端投顾的商业化落地数据。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center text-gray-400 text-xs mt-12 mb-8">
+            <p>免责声明：本报告基于公开披露数据生成，仅供参考，不构成投资建议。</p>
+            <p>&copy; 2023 浙江核新同花顺网络信息股份有限公司 | 财务分析可视化生成</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // 通用配置
+        const colorPalette = ['#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'];
+        
+        // 1. 核心经营数据 (柱状图+折线图)
+        const chartCore = echarts.init(document.getElementById('chart-core-data'));
+        chartCore.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
+            legend: { data: ['2022年', '2023年', '同比变动(%)'], bottom: 0 },
+            grid: { left: '3%', right: '4%', bottom: '10%', containLabel: true },
+            xAxis: { 
+                type: 'category', 
+                data: ['营收', '净利润', '研发投入', '经营现金流', '货币资金', '软件销售'],
+                axisLabel: { interval: 0, rotate: 15 }
+            },
+            yAxis: [
+                { type: 'value', name: '金额(亿元)', splitLine: { show: false } },
+                { type: 'value', name: '变动(%)', axisLabel: { formatter: '{value}%' } }
+            ],
+            series: [
+                { name: '2022年', type: 'bar', data: [35.59, 16.91, 10.67, 17.50, 75.38, 2.85], itemStyle: { color: '#cbd5e1' } },
+                { name: '2023年', type: 'bar', data: [35.64, 14.02, 11.79, 15.92, 81.70, 4.38], itemStyle: { color: '#3b82f6' } },
+                { name: '同比变动(%)', type: 'line', yAxisIndex: 1, data: [0.14, -17.07, 10.51, -9.01, 8.38, 53.53], itemStyle: { color: '#ef4444' }, symbolSize: 8, lineStyle: { width: 3 } }
+            ]
+        });
+
+        // 2. 短期偿债能力 (分组柱状)
+        const chartShort = echarts.init(document.getElementById('chart-short-debt'));
+        chartShort.setOption({
+            tooltip: { trigger: 'axis' },
+            legend: { bottom: 0 },
+            xAxis: { type: 'category', data: ['流动比率', '速动比率'] },
+            yAxis: { type: 'value' },
+            series: [
+                { name: '2023年', type: 'bar', data: [3.42, 3.42], label: { show: true, position: 'top' }, itemStyle: { color: '#3b82f6' } },
+                { name: '行业基准', type: 'bar', data: [2.0, 1.5], itemStyle: { color: '#94a3b8' } }
+            ]
+        });
+
+        // 3. 长期偿债能力 (对比条形图)
+        const chartLong = echarts.init(document.getElementById('chart-long-debt'));
+        chartLong.setOption({
+            tooltip: { trigger: 'axis' },
+            legend: { bottom: 0 },
+            xAxis: { type: 'value', axisLabel: { formatter: '{value}%' } },
+            yAxis: { type: 'category', data: ['资产负债率'] },
+            series: [
+                { name: '同花顺(2023)', type: 'bar', data: [25.65], label: { show: true, position: 'right', formatter: '{c}%' }, itemStyle: { color: '#10b981' } },
+                { name: '行业平均', type: 'bar', data: [45.0], label: { show: true, position: 'right', formatter: '{c}%' }, itemStyle: { color: '#cbd5e1' } }
+            ]
+        });
+
+        // 4. 盈利能力 (雷达图)
+        const chartProfit = echarts.init(document.getElementById('chart-profitability'));
+        chartProfit.setOption({
+            tooltip: {},
+            legend: { data: ['同花顺2023', '行业平均'], top: 0 },
+            radar: {
+                indicator: [
+                    { name: '毛利率', max: 100 },
+                    { name: '净利率', max: 60 },
+                    { name: 'ROE', max: 30 },
+                    { name: '净现比', max: 1.5 }
+                ],
+                radius: '65%'
+            },
+            series: [{
+                type: 'radar',
+                data: [
+                    { value: [89.09, 39.35, 19.16, 1.14], name: '同花顺2023', itemStyle: { color: '#ef4444' }, areaStyle: { opacity: 0.2 } },
+                    { value: [65, 30, 12.5, 1.0], name: '行业平均', itemStyle: { color: '#94a3b8' }, areaStyle: { opacity: 0.1 } }
+                ]
+            }]
+        });
+
+        // 5. 杜邦分析 (瀑布图逻辑)
+        const chartDupont = echarts.init(document.getElementById('chart-dupont'));
+        chartDupont.setOption({
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { type: 'shadow' },
+                formatter: function (params) {
+                    var tar = params[1];
+                    return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
+                }
+            },
+            grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+            xAxis: { type: 'category', data: ['2022年ROE', '盈利驱动(净利率)', '效率驱动(周转)', '杠杆驱动(权益)', '2023年ROE'] },
+            yAxis: { type: 'value', name: '%' },
+            series: [
+                {
+                    name: '辅助',
+                    type: 'bar',
+                    stack: '总量',
+                    itemStyle: { barBorderColor: 'rgba(0,0,0,0)', color: 'rgba(0,0,0,0)' },
+                    data: [0, 19.73, 18.86, 18.86, 0]
+                },
+                {
+                    name: '数值',
+                    type: 'bar',
+                    stack: '总量',
+                    label: { show: true, position: 'top' },
+                    data: [
+                        { value: 25.55, itemStyle: { color: '#94a3b8' } },
+                        { value: -5.82, itemStyle: { color: '#ef4444' } }, // 下降显示红色
+                        { value: -0.87, itemStyle: { color: '#ef4444' } },
+                        { value: 0.30, itemStyle: { color: '#10b981' } }, // 上升显示绿色
+                        { value: 19.16, itemStyle: { color: '#3b82f6' } }
+                    ]
+                }
+            ]
+        });
+
+        // 6. 成本结构 (环形图)
+        const chartCost = echarts.init(document.getElementById('chart-cost-structure'));
+        chartCost.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}亿元 ({d}%)' },
+            legend: { orient: 'vertical', left: 'left' },
+            series: [
+                {
+                    name: '费用构成',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    data: [
+                        { value: 11.79, name: '研发费用', itemStyle: { color: '#8b5cf6' } },
+                        { value: 4.97, name: '销售费用', itemStyle: { color: '#f59e0b' } },
+                        { value: 3.89, name: '营业成本', itemStyle: { color: '#94a3b8' } },
+                        { value: 2.04, name: '管理费用', itemStyle: { color: '#64748b' } }
+                    ],
+                    label: { show: false },
+                    emphasis: { label: { show: true, fontSize: '14', fontWeight: 'bold' } }
+                }
+            ]
+        });
+
+        // 7. 营运效率 (横向对比)
+        const chartOp = echarts.init(document.getElementById('chart-operation'));
+        chartOp.setOption({
+            tooltip: { trigger: 'axis' },
+            legend: {},
+            xAxis: { type: 'value' },
+            yAxis: { type: 'category', data: ['总资产周转率(次)', '应收账款周转率(次)'] },
+            series: [
+                { name: '2022年', type: 'bar', data: [0.39, 94.20], itemStyle: { color: '#cbd5e1' } },
+                { name: '2023年', type: 'bar', data: [0.36, 65.96], itemStyle: { color: '#3b82f6' } }
+            ]
+        });
+
+        // 8. 收入产品结构 (南丁格尔玫瑰图)
+        const chartRevProd = echarts.init(document.getElementById('chart-revenue-product'));
+        chartRevProd.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {d}%' },
+            legend: { top: 'bottom' },
+            series: [
+                {
+                    name: '收入来源',
+                    type: 'pie',
+                    radius: [20, 100],
+                    center: ['50%', '50%'],
+                    roseType: 'area',
+                    itemStyle: { borderRadius: 5 },
+                    data: [
+                        { value: 15.29, name: '增值电信(C端)', itemStyle: { color: '#3b82f6' } },
+                        { value: 13.59, name: '广告推广', itemStyle: { color: '#93c5fd' } },
+                        { value: 4.38, name: '软件销售(B端)', itemStyle: { color: '#ef4444' } }, // 重点
+                        { value: 2.38, name: '基金代销', itemStyle: { color: '#f59e0b' } }
+                    ]
+                }
+            ]
+        });
+
+        // 9. 地区收入 (饼图)
+        const chartRevReg = echarts.init(document.getElementById('chart-revenue-region'));
+        chartRevReg.setOption({
+            tooltip: { trigger: 'item' },
+            series: [
+                {
+                    type: 'pie',
+                    radius: '60%',
+                    data: [
+                        { value: 99.23, name: '境内 (99.2%)', itemStyle: { color: '#334155' } },
+                        { value: 0.77, name: '海外 (0.8%)', itemStyle: { color: '#ef4444' } }
+                    ]
+                }
+            ]
+        });
+
+        // 10. 行业对标
+        const chartInd = echarts.init(document.getElementById('chart-industry-benchmark'));
+        chartInd.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            legend: {},
+            xAxis: { type: 'category', data: ['市盈率(PE)', '毛利率(%)', '研发费用率(%)', '资产负债率(%)'] },
+            yAxis: { type: 'value' },
+            series: [
+                { name: '同花顺', type: 'bar', data: [55, 89.09, 33.09, 25.65], itemStyle: { color: '#ef4444' } },
+                { name: '行业平均', type: 'bar', data: [35, 65, 15, 45], itemStyle: { color: '#94a3b8' } }
+            ]
+        });
+
+        // 11. 竞品对比 (东方财富)
+        const chartPeer = echarts.init(document.getElementById('chart-peer-comparison'));
+        chartPeer.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            legend: {},
+            grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+            xAxis: { type: 'value', boundaryGap: [0, 0.01] },
+            yAxis: { type: 'category', data: ['市盈率(PE)', '资产负债率(%)', '研发费用率(%)', '毛利率(%)'] },
+            series: [
+                { name: '同花顺 (300033)', type: 'bar', data: [55, 25.65, 33.09, 89.09], itemStyle: { color: '#3b82f6' } },
+                { name: '东方财富 (300059)', type: 'bar', data: [28, 69.96, 9.75, 61.00], itemStyle: { color: '#f97316' } }
+            ]
+        });
+
+        // 12. 风险矩阵 (散点图)
+        const chartRisk = echarts.init(document.getElementById('chart-risk-matrix'));
+        chartRisk.setOption({
+            title: { text: '风险严重性图谱', left: 'center', textStyle: { fontSize: 14, color: '#666' } },
+            grid: { top: 40, right: 40, bottom: 30, left: 40 },
+            xAxis: { type: 'value', name: '影响程度', min: 0, max: 6, splitLine: { show: false } },
+            yAxis: { type: 'value', name: '发生概率', min: 0, max: 6, splitLine: { show: false } },
+            visualMap: {
+                min: 0, max: 25, dimension: 2, orient: 'horizontal', right: 10, top: 0,
+                text: ['高风险', '低风险'], calculable: true,
+                inRange: { color: ['#86efac', '#fde047', '#ef4444'] }
+            },
+            tooltip: {
+                formatter: function (param) {
+                    return param.data.name + '<br/>影响: ' + param.data.value[0] + '<br/>概率: ' + param.data.value[1];
+                }
+            },
+            series: [{
+                type: 'scatter',
+                symbolSize: function (data) { return data[2] * 2.5; },
+                label: { show: true, formatter: '{b}', position: 'top', fontSize: 10 },
+                data: [
+                    { name: '市场低迷', value: [5, 5, 25] },
+                    { name: 'AI变现慢', value: [5, 4, 20] },
+                    { name: '合规监管', value: [4, 4, 16] },
+                    { name: '券商自研竞争', value: [3, 3, 9] },
+                    { name: '资金效率低', value: [2, 3, 6] }
+                ]
+            }]
+        });
+
+        // 窗口大小改变时重绘图表
+        window.addEventListener('resize', function() {
+            [chartCore, chartShort, chartLong, chartProfit, chartDupont, chartCost, chartOp, chartRevProd, chartRevReg, chartInd, chartPeer, chartRisk].forEach(c => c.resize());
+        });
+    </script>
+</body>
+</html>
